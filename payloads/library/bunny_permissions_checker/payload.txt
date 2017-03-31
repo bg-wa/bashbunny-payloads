@@ -1,0 +1,34 @@
+# At this point I could not write to /root/udisk/loot
+# or /root/udisk/debug as I could before
+
+LED G
+
+mkdir /root/udisk/debug
+
+touch /test # File 'test' written
+touch /root/test # File 'test' written
+touch /root/udisk/test # File NOT written
+touch /root/udisk/loot/test # File NOT written
+touch /root/udisk/debug/test # File NOT written
+touch /root/udisk/payloads/test # File NOT written
+touch /root/udisk/payloads/switch1/test # File NOT written
+
+# Then I ran:
+# mount -o sync /dev/nandf /root/udisk
+# chown root:root /root/udisk -R
+# chmod 777 /root/udisk -R
+
+
+
+touch /test # File 'test' written
+touch /root/test # File 'test' written
+touch /root/udisk/test # File 'test' written
+touch /root/udisk/loot/test # File 'test' written
+touch /root/udisk/debug/test # File 'test' written
+touch /root/udisk/payloads/test # File 'test' written
+touch /root/udisk/payloads/switch1/test # File 'test' written
+
+
+# Here I could write to my Bunny again
+
+LED R G B
