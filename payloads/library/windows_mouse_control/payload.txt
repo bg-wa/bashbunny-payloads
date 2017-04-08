@@ -5,7 +5,8 @@
 # Version:       1.0
 # Target:        Windows
 #
-# Opens the browser to a specified url on an unlocked android phone.
+# Allows mouse control by keyboard on windows.
+# Add ""
 #
 
 LED B
@@ -33,15 +34,22 @@ Q STRING powershell -WindowStyle Hidden -Exec Bypass "Set-ItemProperty -Path 'HK
 Q DELAY 100
 Q ENTER
 LED G 100
+LED R G B
 Q DELAY 1000
 
-Q ALT SHIFT NUMLOCK
+Q ALT-SHIFT-NUMLOCK
+
+LED B
+
 Q DELAY 1000
 
 LED G
+Q STRING -
 
 #USE NUMPAD TO MOVE MOUSE
-for i in {1..100}
-do
-   Q STRING 8
-done
+#https://support.microsoft.com/en-us/help/14204/windows-7-use-mouse-keys-to-move-mouse-pointer
+#for i in {1..100}
+#do
+#   Q STRING 8
+#done
+
