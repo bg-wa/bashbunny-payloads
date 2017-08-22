@@ -20,33 +20,37 @@
 ################################################################################
 # Start Debug
 ################################################################################
-if [ "$1" = "OFF" ]; then
-    DEBUG_STATE="OFF"
-else
-    DEBUG_STATE="ON"
-fi
 
-timestamp () {
-    echo "$(date +"%Y-%m-%d_%H-%M-%S")"
-}
-
-start_debug () {
-    DEBUG_FILE="/root/udisk/debug/debug_$(timestamp).txt"
-    if [ ! -d "/root/udisk/debug/" ]; then
-      mkdir /root/udisk/debug/
+function DEBUG() {
+    if [ "$1" = "OFF" ]; then
+        DEBUG_STATE="OFF"
+    else
+        DEBUG_STATE="ON"
     fi
-    touch "${DEBUG_FILE}"
-    echo "$(timestamp): DEBUG STARTED" >> "${DEBUG_FILE}"
+
+    timestamp () {
+        echo "$(date +"%Y-%m-%d_%H-%M-%S")"
+    }
+
+    start_debug () {
+        DEBUG_FILE="/root/udisk/debug/debug_$(timestamp).txt"
+        if [ ! -d "/root/udisk/debug/" ]; then
+          mkdir /root/udisk/debug/
+        fi
+        touch "${DEBUG_FILE}"
+        echo "$(timestamp): DEBUG STARTED" >> "${DEBUG_FILE}"
+    }
+
+    debug_log () {
+        echo "$(timestamp): ${1}" >> "${DEBUG_FILE}"
+    }
+
+    if [ "${DEBUG_STATE}" = "ON" ]; then
+        start_debug
+    else
+        DEBUG_FILE="/dev/null/"
+    fi
 }
 
-debug_log () {
-    echo "$(timestamp): ${1}" >> "${DEBUG_FILE}"
-}
-
-if [ "${DEBUG_STATE}" = "ON" ]; then
-    start_debug
-else
-    DEBUG_FILE="/dev/null/"
-fi
-
+export -f DEBUG
 export -f DEBUG_FILE
