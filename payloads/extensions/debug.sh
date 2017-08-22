@@ -49,4 +49,4 @@ else
     DEBUG_FILE="/dev/null/"
 fi
 
-export DEBUG_FILE
+export -f DEBUG_FILE
