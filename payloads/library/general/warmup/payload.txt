@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Title:         WAIT Extension Test
+# Author:        bg-wa
+# Version:       1.0
+# Target:        ANY
+# Attackmodes:   ETHERNET
+#
+# Waits for the target to be identified to continue
+# executing the payload. Used when pre-booting a bashbunny
+# from USB power.
+#
+# Example:
+# WARMUP
+#
+# | Attack Stage        | Description                              |
+# | ------------------- | ---------------------------------------- |
+# | SETUP               | Boot/Wait                                |
+# | ATTACK              | Attack                                   |
+# | FINISH              | Done                                     |
+#
+
+
+# POWER BASH BUNNY FROM USB
+LED SETUP
+
+LED ATTACK
+WAIT
+
+# PLUG IN BASH BUNNY
+# FLIP SWITCH
+# DO WHATEVS
+
+LED FINISH
