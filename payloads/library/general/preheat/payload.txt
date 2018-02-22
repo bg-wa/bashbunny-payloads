@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Title:         Preheat
+# Author:        bg-wa
+# Version:       1.0
+# Target:        UNITY
+# Attackmodes:   HID/STORAGE
+#
+# Used when pre-booting a bashbunny from USB power.
+# This payload Waits for the device be connected to
+# continue executing the payload.
+#
+# | Attack Stage        | Description                              |
+# | ------------------- | ---------------------------------------- |
+# | SETUP               | Boot/Start your BB Services              |
+# | ATTACK              | Waits for BB to be connected to device   |
+# | FINISH              | Done                                     |
+#
+
+# POWER BASH BUNNY FROM USB
+LED SETUP
+
+# Start BB services
+
+ATTACKMODE HID STORAGE
+LED ATTACK
+
+# PLUG BASH BUNNY INTO TARGET
+
+while [ ! -f /root/udisk/loot/connected ]
+do
+    sleep 2
+    RUN UNITY xterm
+    Q DELAY 1000
+    Q STRING "touch /media/\$USER/BashBunny/loot/connected"
+    Q ENTER
+    Q DELAY 500
+    Q ALT F4
+    sleep 1
+done
+ATTACKMODE OFF
+rm /root/udisk/loot/connected
+
+# DO WHATEVS
+
+LED FINISH
